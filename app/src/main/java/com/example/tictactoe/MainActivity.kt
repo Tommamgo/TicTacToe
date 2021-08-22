@@ -7,7 +7,8 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-
+    // init the TextViews they will show x or o
+    // also they are clickable
     private lateinit var f0: TextView
     private lateinit var f1: TextView
     private lateinit var f2: TextView
@@ -67,7 +68,12 @@ class MainActivity : AppCompatActivity() {
                 statusText.text = "Spieler $currentPlayer hat gewonnen"
                 println(checkWin())
                 gameState = "won"
-            } else if(allFileds.all { it.text == "" })else {
+            } else if (allFileds.all { it.text != "" }) {
+                statusText.text = "Niemand hat gewonnen!!"
+                currentPlayer = "x"
+                gameState = "won"
+
+            } else {
                 currentPlayer = if (currentPlayer == "x") "o" else "x"
                 statusText.text = "Spieler $currentPlayer ist an der Reihe"
             }
